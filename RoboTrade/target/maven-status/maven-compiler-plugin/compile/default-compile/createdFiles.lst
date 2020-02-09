@@ -1,0 +1,12 @@
+com\robotrade\model\Stock.class
+com\robotrade\service\KiteApiServices$2.class
+com\robotrade\service\KiteApiServices$1.class
+com\robotrade\service\KiteApiServices$5.class
+com\robotrade\authentication\UserAuthentication.class
+com\robotrade\entrypoint\RoboTradeApplication.class
+com\robotrade\service\KiteApiServices$4.class
+com\robotrade\service\Schedulars.class
+com\robotrade\controllers\KiteConnectController.class
+com\robotrade\service\KiteApiServices$3.class
+com\robotrade\service\KiteApiServices.class
+com\robotrade\authentication\UserAuthentication$1.class
