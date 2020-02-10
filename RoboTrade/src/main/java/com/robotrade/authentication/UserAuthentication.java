@@ -36,7 +36,7 @@ public class UserAuthentication {
             }
         });
 
-        User user =  kiteConnect.generateSession("KBqn6qmlU9GQnXaAldAgqcArfc7SIdgk", "12hb924b99mcs0w3n5szrcd357xs7v1o");
+        User user =  kiteConnect.generateSession("yvI6ENE5sNZwg50IdqcOtThXs1kMVQXQ", "12hb924b99mcs0w3n5szrcd357xs7v1o");
         kiteConnect.setAccessToken(user.accessToken);
         kiteConnect.setPublicToken(user.publicToken);
         
