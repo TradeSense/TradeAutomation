@@ -31,13 +31,17 @@ public class KiteConnectController {
 				
 				double newPrice = instrumentsNew.get(RoboTradeApplication.instruments[i]).lastPrice;
 				double oldPrice = instrumentsOld.get(RoboTradeApplication.instruments[i]).lastPrice;
+				double volumeTradedNew = instrumentsNew.get(RoboTradeApplication.instruments[i]).volumeTradedToday;
+				double volumeTradedOld = instrumentsOld.get(RoboTradeApplication.instruments[i]).volumeTradedToday;
 				double changeInPercent = ((newPrice - oldPrice)/newPrice)*100;
-				if(changeInPercent >1.2 && changeInPercent < 2) {
-					System.out.println("Uptrend Stock = "+RoboTradeApplication.instruments[i]+"==> CurrentPrice = "+ newPrice + "==>OldPrice = "+oldPrice);
+				double volumeTradedInPercent = ((volumeTradedNew - volumeTradedOld)/volumeTradedNew)*100;
+
+				if(changeInPercent >1 && volumeTradedInPercent > 6 && volumeTradedNew > 1000) {
+					System.out.println("Uptrend Stock = "+RoboTradeApplication.instruments[i]+"==> CurrentPrice = "+ newPrice + "==>OldPrice = "+oldPrice +"==>NewVolume ="+volumeTradedNew+"==>TimeStamp="+instrumentsNew.get(RoboTradeApplication.instruments[i]).timestamp);
 					//apiService.placeBracketOrder(RoboTradeApplication.kiteConnect,newPrice, oldPrice,RoboTradeApplication.instruments[i],Constants.TRANSACTION_TYPE_BUY);
-				}else if(changeInPercent > -1.2 && changeInPercent < -2) {
+				}else if(changeInPercent <-1 && volumeTradedInPercent > 6 && volumeTradedNew > 1000) {
 					//apiService.placeBracketOrder(RoboTradeApplication.kiteConnect, newPrice, oldPrice,RoboTradeApplication.instruments[i],Constants.TRANSACTION_TYPE_SELL);
-					System.out.println("DownTrend Stock = "+RoboTradeApplication.instruments[i]+"==> CurrentPrice = "+ newPrice + "==>OldPrice = "+oldPrice);
+					System.out.println("DownTrend Stock = "+RoboTradeApplication.instruments[i]+"==> CurrentPrice = "+ newPrice + "==>OldPrice = "+oldPrice +"==>OldVolume ="+volumeTradedOld+"==>TimeStamp="+instrumentsOld.get(RoboTradeApplication.instruments[i]).timestamp);
 
 				}
 			}
