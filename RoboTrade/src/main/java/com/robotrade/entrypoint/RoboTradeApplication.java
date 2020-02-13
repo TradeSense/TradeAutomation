@@ -75,23 +75,6 @@ public class RoboTradeApplication {
 
 	@Scheduled(fixedDelay = 120000)
 	public void findStocksAbove200() {
-		if(Count==0) {
-			UserAuthentication loginToKite=new UserAuthentication();
-			try {
-				kiteConnect=loginToKite.userLogin();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (KiteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Count++;
-
-		}
 		KiteApiServices apiService=new KiteApiServices();
 		try {
 			apiService.getLTP(kiteConnect);
