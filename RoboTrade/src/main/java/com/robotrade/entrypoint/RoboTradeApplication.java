@@ -53,7 +53,7 @@ public class RoboTradeApplication {
 		}		
 	}
 
-	@Scheduled(fixedDelay = 12000)
+	@Scheduled(fixedDelay = 120000)
 	public void findTrandingStocks() {
 		KiteConnectController kiteController=new KiteConnectController();
 		try {
@@ -74,7 +74,7 @@ public class RoboTradeApplication {
 
 	}
 
-	@Scheduled(fixedDelay = 120000)
+	/*@Scheduled(fixedDelay = 120000)
 	public void findStocksAbove200() {
 		KiteApiServices apiService=new KiteApiServices();
 		try {
@@ -84,5 +84,5 @@ public class RoboTradeApplication {
 		} catch (KiteException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }
