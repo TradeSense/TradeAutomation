@@ -32,6 +32,7 @@ public class RoboTradeApplication {
 	public static Map<String, Quote> instrumentsNew=new HashMap<String, Quote>();
 	public static Map<String, Quote> instrumentsTrending=new HashMap<String, Quote>();
 	public static List<String> placeOrderStock = new ArrayList<String>();
+	
 
 	int Count=0;
 
