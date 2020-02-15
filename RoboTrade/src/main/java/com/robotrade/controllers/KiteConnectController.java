@@ -35,11 +35,23 @@ public class KiteConnectController {
 				double volumeTradedOld = instrumentsOld.get(RoboTradeApplication.instruments[i]).volumeTradedToday;
 				double changeInPercent = ((newPrice - oldPrice)/newPrice)*100;
 				double volumeTradedInPercent = ((volumeTradedNew - volumeTradedOld)/volumeTradedNew)*100;
+				
+				double dayPriceHigh = instrumentsOld.get(RoboTradeApplication.instruments[i]).oiDayHigh;
+				double dayPriceLow = instrumentsOld.get(RoboTradeApplication.instruments[i]).oiDayLow;
+				
+				double dayOpen = instrumentsOld.get(RoboTradeApplication.instruments[i]).ohlc.open;
+				
+				double dayHighPercentDayOpen = ((dayPriceHigh - dayOpen)/dayPriceHigh)*100;
+				
+				double dayLowPercentDayOpen = ((dayOpen - dayPriceLow)/dayOpen)*100;
+				
+				
+				double changeInPrice = instrumentsOld.get(RoboTradeApplication.instruments[i]).change;
 
-				if(changeInPercent >1 && volumeTradedInPercent > 6 && volumeTradedNew > 1000) {
+				if(changeInPercent >1 && volumeTradedInPercent > 5 && volumeTradedNew > 10000 && (dayHighPercentDayOpen > dayLowPercentDayOpen) ) {
 					System.out.println("Uptrend Stock = "+RoboTradeApplication.instruments[i]+"==> CurrentPrice = "+ newPrice + "==>OldPrice = "+oldPrice +"==>NewVolume ="+volumeTradedNew+"==>TimeStamp="+instrumentsNew.get(RoboTradeApplication.instruments[i]).timestamp);
 					//apiService.placeBracketOrder(RoboTradeApplication.kiteConnect,newPrice, oldPrice,RoboTradeApplication.instruments[i],Constants.TRANSACTION_TYPE_BUY);
-				}else if(changeInPercent <-1 && volumeTradedInPercent > 6 && volumeTradedNew > 1000) {
+				}else if(changeInPercent <-1 && volumeTradedInPercent > 5 && volumeTradedNew > 10000 && (dayHighPercentDayOpen < dayLowPercentDayOpen)) {
 					//apiService.placeBracketOrder(RoboTradeApplication.kiteConnect, newPrice, oldPrice,RoboTradeApplication.instruments[i],Constants.TRANSACTION_TYPE_SELL);
 					System.out.println("DownTrend Stock = "+RoboTradeApplication.instruments[i]+"==> CurrentPrice = "+ newPrice + "==>OldPrice = "+oldPrice +"==>OldVolume ="+volumeTradedOld+"==>TimeStamp="+instrumentsOld.get(RoboTradeApplication.instruments[i]).timestamp);
 
